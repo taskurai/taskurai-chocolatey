@@ -3,9 +3,8 @@ env:
   VERSION: ${{ github.event.client_payload.ref }}
 
 on:
-  repository_dispatch:
-    types:
-      - choco-deploy-taskurai
+  workflow_dispatch
+
 jobs:
   deploy:
     name: Deploy Chocolatey Package for taskurai
