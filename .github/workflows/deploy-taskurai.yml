@@ -40,7 +40,7 @@ jobs:
               $_ -replace 'XXXXXX', "${hash}" `
                 -replace 'X.X.X', ${version}
               } | Set-Content '.\VERIFICATION.txt'
-          $licenseFileUrl = "https://github.com/taskurai/taskurai-chocolatey/blob/main/LICENSE
+          $licenseFileUrl = "https://github.com/taskurai/taskurai-chocolatey/blob/main/LICENSE"
           $licenseFileOutput = "LICENSE.txt"
           Invoke-WebRequest -Uri $licenseFileUrl -OutFile $licenseFileOutput
 
