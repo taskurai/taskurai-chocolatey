@@ -13,8 +13,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Fetch Version
         id: fetch-version
-        run: |
-          $version = (Invoke-WebRequest -Uri "https://get.taskurai.com/releases/latestversion.txt" | Select-Object -ExpandProperty Content)
+        run: |        
+          $version = (Invoke-WebRequest -Uri 'https://get.taskurai.com/releases/latestversion.txt' -Headers @{
+            'Origin' = 'http://localhost:3000'
+            'Referer' = 'http://localhost:3000'
+          } | Select-Object -ExpandProperty Content)
           echo "##[set-output name=version]$version"
       - name: Push Choco
         shell: powershell
