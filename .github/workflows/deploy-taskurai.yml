@@ -11,13 +11,18 @@ jobs:
     steps:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
-      - name: Push Choco
-        shell: powershell
-        run: |
+      - name: Fetch Version
+        id: fetch-version
+        run: |        
           $version = (Invoke-WebRequest -Uri 'https://get.taskurai.com/releases/latestversion.txt' -Headers @{
             'Origin' = 'http://localhost:3000'
             'Referer' = 'http://localhost:3000'
-          } | Select-Object -ExpandProperty Content)   
+          } | Select-Object -ExpandProperty Content)
+          echo "##[set-output name=version]$version"        
+      - name: Push Choco
+        shell: powershell
+        run: |
+          $version = "${{ steps.fetch-version.outputs.version }}"| Select-Object -ExpandProperty Content)   
           
           $url = "https://get.taskurai.com/releases/${version}/taskurai_${version}_win-x64.zip"
           $output = "taskurai_" + ${version} + "_win-x64.zip"
