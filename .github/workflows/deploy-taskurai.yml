@@ -14,8 +14,8 @@ jobs:
       - name: Fetch Version
         id: fetch-version
         run: |
-          version=$(curl -s https://get.taskurai.com/releases/latestversion.json | jq -r '.version')
-          echo "::set-output name=version::$version"
+          $version = (Invoke-WebRequest -Uri "https://get.taskurai.com/releases/latestversion.txt" | Select-Object -ExpandProperty Content)
+          echo "##[set-output name=version]$version"
       - name: Push Choco
         shell: powershell
         run: |
