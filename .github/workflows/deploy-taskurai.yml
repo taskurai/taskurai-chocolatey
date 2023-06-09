@@ -1,6 +1,5 @@
 env:
   CHOCO_API_KEY: ${{ secrets.CHOCO_API_KEY }}
-  VERSION: ${{ github.event.client_payload.ref }}
 
 on:
   workflow_dispatch
@@ -12,10 +11,15 @@ jobs:
     steps:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
+      - name: Fetch Version
+        id: fetch-version
+        run: |
+          version=$(curl -s https://get.taskurai.com/releases/latestversion.json | jq -r '.version')
+          echo "::set-output name=version::$version"
       - name: Push Choco
         shell: powershell
         run: |
-          $version = "${{ github.event.client_payload.ref }}"
+          $version = "${{ steps.fetch-version.outputs.version }}"
           $url = "https://get.taskurai.com/releases/${version}/taskurai_${version}_win-x64.zip"
           $output = "taskurai_" + ${version} + "_win-x64.zip"
 
