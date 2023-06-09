@@ -22,7 +22,7 @@ jobs:
       - name: Push Choco
         shell: powershell
         run: |
-          $version = "${{ steps.fetch-version.outputs.version }}"| Select-Object -ExpandProperty Content)   
+          $version = "${{ steps.fetch-version.outputs.version }}" 
           
           $url = "https://get.taskurai.com/releases/${version}/taskurai_${version}_win-x64.zip"
           $output = "taskurai_" + ${version} + "_win-x64.zip"
