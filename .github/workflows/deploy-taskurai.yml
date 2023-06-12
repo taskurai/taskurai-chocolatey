@@ -25,12 +25,16 @@ jobs:
 
           Set-Location -Path .\taskurai\
           (Get-Content '.\taskurai.nuspec' -Raw).Replace("<version>X.X.X</version>", "<version>" + ${version} + "</version>") | Out-File '.\taskurai.nuspec'
+          
+          (Get-Content '.\taskurai.nuspec' -Raw)
 
           Set-Location -Path .\tools
           Invoke-WebRequest -Uri $url -OutFile $output
           $checksum = Get-FileHash -Path $output
           $hash = $checksum.Hash
           (Get-Content '.\chocolateyinstall.ps1' -Raw).Replace("X.X.X",  ${version} ).Replace("XXXXXX", "${hash}") | Out-File '.\chocolateyinstall.ps1'
+          
+          (Get-Content '.\chocolateyinstall.ps1' -Raw)
 
           Set-Location -Path ..\legal
           (Get-Content '.\VERIFICATION.txt') | Foreach-Object {
@@ -40,6 +44,10 @@ jobs:
           $licenseFileUrl = "https://github.com/taskurai/taskurai-chocolatey/blob/main/LICENSE"
           $licenseFileOutput = "LICENSE.txt"
           Invoke-WebRequest -Uri $licenseFileUrl -OutFile $licenseFileOutput
+          
+          (Get-Content '.\VERIFICATION.txt')
+          
+          (Get-Content $licenseFileOutput -Raw)
 
           Set-Location -Path ..\
           Choco Pack
