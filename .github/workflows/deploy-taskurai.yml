@@ -15,9 +15,13 @@ jobs:
         shell: powershell
         run: |         
           $version = (Invoke-WebRequest -Uri 'https://get.taskurai.com/releases/latestversion.txt').Content.Trim()
+          echo "Version: " + $version
           
           $url = "https://get.taskurai.com/releases/${version}/taskurai_${version}_win-x64.zip"
           $output = "taskurai_" + ${version} + "_win-x64.zip"
+          
+          echo "Url: " + $url
+          echo "Output: " + $output
 
           Set-Location -Path .\taskurai\
           (Get-Content '.\taskurai.nuspec' -Raw).Replace("<version>X.X.X</version>", "<version>" + ${version} + "</version>") | Out-File '.\taskurai.nuspec'
