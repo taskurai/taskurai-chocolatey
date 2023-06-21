@@ -13,7 +13,7 @@
     <licenseUrl>https://github.com/taskurai/taskurai-chocolatey/blob/main/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <packageSourceUrl>https://github.com/taskurai/taskurai-chocolatey</packageSourceUrl>
-    <docsUrl>https://docs.taskurai.com/</docsUrl>
+    <docsUrl>https://taskurai.com/docs</docsUrl>
     <summary>Taskurai - scalable tasks and jobs platform</summary>
     <description><![CDATA[## Taskurai - provides an easy to setup scalable platform to run background tasks or jobs. Taskurai provides a convenient way to offload workload to asynchronic tasks, resulting in more scalable and responsive systems.]]></description>
   </metadata>
