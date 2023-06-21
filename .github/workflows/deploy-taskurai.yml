@@ -17,6 +17,8 @@ jobs:
           $version = (Invoke-WebRequest -Uri 'https://get.taskurai.com/releases/latestversion.txt').Content.Trim()
           echo "Version: " + $version
           
+          $version="0.2.23"
+          
           $url = "https://get.taskurai.com/releases/${version}/taskurai_${version}_win-x64.zip"
           $output = "taskurai_" + ${version} + "_win-x64.zip"
           
