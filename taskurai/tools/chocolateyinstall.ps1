@@ -12,7 +12,7 @@ $packageArgs = @{
 
 Install-ChocolateyZipPackage  @packageArgs
 
-$bindir = Join-Path -Path $toolsDir -ChildPath "Taskurai\bin"
+$bindir = Join-Path -Path $toolsDir -ChildPath "Taskurai"
 
 # create empty sidecar so shimgen ignores them.
 Get-ChildItem $bindir\*.exe | ForEach-Object { Set-Content -Value "" -Path "$_.ignore" }
