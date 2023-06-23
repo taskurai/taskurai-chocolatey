@@ -1,5 +1,5 @@
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$bindir   = Join-Path -Path $toolsDir -ChildPath "Taskurai\bin"
+$bindir   = Join-Path -Path $toolsDir -ChildPath "Taskurai"
 
 $unPath = Join-Path $toolsDir 'Uninstall-ChocolateyPath.psm1'
 Import-Module $unPath
