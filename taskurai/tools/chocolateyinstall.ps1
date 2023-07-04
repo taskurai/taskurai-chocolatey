@@ -4,11 +4,14 @@ $toolsDir       = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
 $packageArgs = @{
   packageName    = $env:ChocolateyPackageName
-  unzipLocation  = $toolsDir
+  unzipLocation  = "$toolsDir\Taskurai"
   file64         = "$toolsDir\taskurai_X.X.X_win-x64.zip"
   checksumType   = "sha256"
   checksum64     = "XXXXXX"
 }
+
+# Create the installation directory
+New-Item -ItemType Directory -Path "$toolsDir\Taskurai" -Force | Out-Null
 
 Install-ChocolateyZipPackage  @packageArgs
 
